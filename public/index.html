@@ -199,7 +199,7 @@
       document.getElementById('copyContainer').style.display = "none";
 
       try {
-        const response = await fetch('/ask-ai', {
+        const response = await fetch('/api/ask-ai', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ prompt })
