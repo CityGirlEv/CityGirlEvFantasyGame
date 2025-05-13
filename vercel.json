@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/ask-ai", "destination": "/api/ask-ai.js" }
+  ]
+}

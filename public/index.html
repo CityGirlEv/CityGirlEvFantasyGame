@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whip Up a Fantasy – CGEGC</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background-color: #1e1e2f;
+      color: #f4f4f8;
+      padding: 1.5rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    img.avatar {
+      display: block;
+      max-width: 180px;
+      margin: 0 auto 1rem auto;
+      border-radius: 50%;
+      border: 3px solid #ff69b4;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      color: #ff69b4;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .tagline {
+      text-align: center;
+      font-style: italic;
+      color: #ccc;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      background: #2e2e40;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.4rem;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+    }
+
+    input, select {
+      background-color: #f4f4f8;
+      color: #333;
+    }
+
+    button {
+      background-color: #ff69b4;
+      color: white;
+      font-weight: bold;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff85c1;
+    }
+
+    #output {
+      margin-top: 2rem;
+      background: #2e2e40;
+      padding: 1rem;
+      border: 1px dashed #ff69b4;
+      border-radius: 10px;
+      white-space: pre-wrap;
+      position: relative;
+    }
+
+    .copy-btn {
+      margin-top: 0.5rem;
+      text-align: center;
+    }
+
+    .follow {
+      text-align: center;
+      margin-top: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .follow a {
+      color: #ff85c1;
+      text-decoration: none;
+      margin: 0 0.5rem;
+      font-weight: bold;
+    }
+
+    .follow a:hover {
+      text-decoration: underline;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .btn-row button {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <img src="cgegc-avatar.png" alt="City Girl Ev Gone Country" class="avatar" />
+  <h1>Whip Up a Fantasy</h1>
+  <p class="tagline">City Girl Ev Gone Country & Molly say: “Don’t just dream it — build it, baby 💋”</p><p>USE AI TO MAKE YOUR LIFE EASIER!<BR>LET MOLLY AND I BE YOUR PERSONAL AI ASSISTANTS!<BR>LEARN AI OR GET LEFT BEHIND!</BR><br><FONT COLOR=YELLOW>CLICK THE "SUPRISE ME" BUTTON BELOW TO GET IDEAS!</FONT></p>
+
+  <form id="fantasyForm">
+    <label for="idea">1. What do you want to make?</label>
+    <input id="idea" required />
+
+    <label for="mood">2. Mood or style:</label>
+    <input id="mood" required />
+
+    <label for="format">3. Delivery type:</label>
+    <select id="format">
+      <option value="image">🖼️ Image</option>
+      <option value="steps">📜 Step-by-step instructions</option>
+      <option value="story">✍️ Short story or script</option>
+      <option value="character">🎤 In a character’s voice</option>
+      <option value="howto">🔧 How-to plan</option>
+    </select>
+
+    <div class="btn-row">
+      <button type="submit">✨ Summon the Magic</button>
+      <button type="button" onclick="randomize()">🎲 Surprise Me</button>
+    </div>
+  </form>
+
+  <div id="output"></div>
+  <div class="copy-btn" id="copyContainer" style="display:none;">
+    <button onclick="copyResult()">📋 Copy This Fantasy</button>
+  </div>
+
+  <div class="follow">
+    <p>Follow me for more:
+      <a href="https://tiktok.com/@CityGirlEvGoneCountry" target="_blank">TikTok</a> •
+      <a href="https://youtube.com/@CityGirlEvGoneCountry" target="_blank">YouTube</a> •
+      <a href="https://facebook.com/CityGirlEvGoneCountry" target="_blank">Facebook</a>
+    </p>
+  </div>
+
+  <script>
+    const ideas = [
+      ["a bedtime story about a flying pickle", "cheeky and dreamy", "story"],
+      ["a pirate workout routine", "intense and salty", "steps"],
+      ["a love letter from a raccoon", "flirty and weird", "character"],
+      ["a haunted treehouse blueprint", "spooky and playful", "howto"],
+      ["a perfume ad for a dragon", "mysterious and luxurious", "story"],
+      ["a gossip column in a fairy kingdom", "sassy and dramatic", "story"]
+    ];
+
+    function randomize() {
+      const random = ideas[Math.floor(Math.random() * ideas.length)];
+      document.getElementById('idea').value = random[0];
+      document.getElementById('mood').value = random[1];
+      document.getElementById('format').value = random[2];
+    }
+
+    async function copyResult() {
+      const text = document.getElementById('output').innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+        alert("Copied to clipboard!");
+      } catch (err) {
+        alert("Failed to copy.");
+      }
+    }
+
+    document.getElementById('fantasyForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const idea = document.getElementById('idea').value;
+      const mood = document.getElementById('mood').value;
+      const format = document.getElementById('format').value;
+
+      const prompt = `You are ChatGPT. Someone wants to ${idea}. They want it in a ${mood} mood and delivered as a ${format}. Create the result.`;
+
+      document.getElementById('output').innerText = "Hold on... weaving your fantasy ✨";
+      document.getElementById('copyContainer').style.display = "none";
+
+      try {
+        const response = await fetch('/ask-ai', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt })
+        });
+
+        const data = await response.json();
+        document.getElementById('output').innerText = data.result || 'No response from AI';
+        document.getElementById('copyContainer').style.display = "block";
+      } catch (err) {
+        document.getElementById('output').innerText = `Something went wrong: ${err.message}`;
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
